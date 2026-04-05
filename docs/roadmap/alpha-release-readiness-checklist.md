@@ -78,10 +78,17 @@
 真正 cut alpha 版本时固定顺序：
 
 1. `aily-skills-auth`
-2. `aily-skills-auth-iam-service`
-3. `aily-skills-auth-authcli`
-4. `aily-skills-auth-verify-sdk`
+2. `aily-skills-auth-verify-sdk`
+3. `aily-skills-auth-iam-service`
+4. `aily-skills-auth-authcli`
 5. `aily-skills-auth-demo-skill`
+
+发布完成状态：
+
+- 上述五个仓的 `v0.1.0-alpha` Release 已完成
+- GHCR 镜像已推送：
+  - `ghcr.io/wodenwang/aily-skills-auth-iam-service:0.1.0-alpha`
+  - `ghcr.io/wodenwang/aily-skills-auth-demo-skill:0.1.0-alpha`
 
 ## Exit Criteria
 

@@ -35,6 +35,8 @@ docker build -t aily-skills-auth-iam-service:0.1.0-alpha .
 - wheel / sdist 构建通过
 - 镜像构建通过
 - 仓内已补 `Dockerfile` 和 `.dockerignore`
+- GHCR push 已完成：`ghcr.io/wodenwang/aily-skills-auth-iam-service:0.1.0-alpha`
+- image digest：`sha256:761c51d0b36e4ce3a28ae3b86b4836252173046782567efac62e0317685bc99a`
 
 ### `aily-skills-auth-authcli`
 
@@ -51,6 +53,7 @@ GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -o dist/auth-cli-linux-
 
 - Darwin arm64 二进制构建通过
 - Linux amd64 二进制构建通过
+- GitHub Release 资产已上传
 
 ### `aily-skills-auth-verify-sdk`
 
@@ -66,6 +69,7 @@ uvx --from build pyproject-build --wheel --sdist
 
 - wheel / sdist 构建通过
 - 包版本已对齐到 `0.1.0a0`
+- GitHub Release 资产已上传
 
 ### `aily-skills-auth-demo-skill`
 
@@ -83,7 +87,7 @@ uvx --from build pyproject-build --wheel --sdist
 docker build \
   --build-context verify_sdk_dist=../aily-skills-auth-verify-sdk/dist \
   --build-arg VERIFY_SDK_WHEEL=aily_skills_auth_verify_sdk-0.1.0a0-py3-none-any.whl \
-  -t ghcr.io/org/aily-skills-auth-demo-skill:0.1.0-alpha \
+  -t ghcr.io/wodenwang/aily-skills-auth-demo-skill:0.1.0-alpha \
   .
 ```
 
@@ -93,6 +97,8 @@ docker build \
 - `service-demo` 镜像构建通过
 - `service-demo` 镜像按依赖顺序消费已构建的 `verify-sdk` wheel
 - 镜像中不再复制 `verify-sdk` 源码副本
+- GHCR push 已完成：`ghcr.io/wodenwang/aily-skills-auth-demo-skill:0.1.0-alpha`
+- image digest：`sha256:e8660f2dc51fe2d2ecbdebf3c0cc0e5a0627542ea66851a2316c250110513543`
 
 ## Packaging Rule
 
@@ -106,6 +112,11 @@ docker build \
 ## Decision
 
 当前打包链路已经满足主控仓 [alpha-release-readiness-checklist.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/alpha-release-readiness-checklist.md) 中的“打包命令可执行”要求。
+
+补充状态：
+
+- 五个仓的 `v0.1.0-alpha` GitHub Release 已创建
+- `iam-service` 与 `demo-skill` 的 GHCR alpha 镜像已推送
 
 下一步可进入：
 
