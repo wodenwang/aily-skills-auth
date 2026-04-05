@@ -1,0 +1,61 @@
+version: 1
+updated_at: "2026-04-05"
+owner_repo: "aily-skills-auth"
+subprojects:
+  - name: "aily-skills-auth"
+    type: "control-plane-docs"
+    status: "active"
+    purpose: "主控规划、模板、契约与测试策略仓"
+    stack:
+      - "markdown"
+      - "yaml"
+    depends_on: []
+  - name: "aily-skills-auth-iam-service"
+    type: "service"
+    status: "planned"
+    purpose: "鉴权决策、签发、撤销、审计、飞书同步"
+    stack:
+      - "python"
+      - "fastapi"
+      - "postgresql"
+      - "redis"
+    depends_on:
+      - "aily-skills-auth"
+  - name: "aily-skills-auth-admin-console"
+    type: "frontend"
+    status: "planned"
+    purpose: "管理控制台和策略模拟器"
+    stack:
+      - "react"
+    depends_on:
+      - "aily-skills-auth"
+      - "aily-skills-auth-iam-service"
+  - name: "aily-skills-auth-authcli"
+    type: "cli"
+    status: "planned"
+    purpose: "本地鉴权代理、缓存、刷新、Agent 注册"
+    stack:
+      - "go"
+    depends_on:
+      - "aily-skills-auth"
+      - "aily-skills-auth-iam-service"
+  - name: "aily-skills-auth-verify-sdk"
+    type: "sdk"
+    status: "planned"
+    purpose: "服务端 token 验证和身份一致性校验"
+    stack:
+      - "python"
+    depends_on:
+      - "aily-skills-auth"
+      - "aily-skills-auth-iam-service"
+  - name: "aily-skills-auth-demo-skill"
+    type: "demo"
+    status: "planned"
+    purpose: "端到端示例 Skill 与联调场景"
+    stack:
+      - "bash"
+      - "python"
+    depends_on:
+      - "aily-skills-auth"
+      - "aily-skills-auth-authcli"
+      - "aily-skills-auth-verify-sdk"
