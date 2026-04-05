@@ -36,22 +36,22 @@
 ### `aily-skills-auth-demo-skill`
 
 - 类型：示例仓
-- 内容：Demo Skill、联调脚本、回归样例
+- 内容：`skill-template`、`skill-sample`、`service-demo`、联调脚本、回归样例
 
 ## 创建顺序
 
 1. `aily-skills-auth`
 2. `aily-skills-auth-iam-service`
 3. `aily-skills-auth-authcli`
-4. `aily-skills-auth-demo-skill`
-5. `aily-skills-auth-verify-sdk`
+4. `aily-skills-auth-verify-sdk`
+5. `aily-skills-auth-demo-skill`
 6. `aily-skills-auth-admin-console`
 
 ## 依赖关系
 
 - `authcli` 首先依赖 `iam-service`
-- `demo-skill` 依赖 `authcli`
 - `verify-sdk` 依赖 `iam-service` 的冻结契约
+- `demo-skill` 依赖 `authcli` 与 `verify-sdk`
 - `admin-console` 依赖 `iam-service` 管理 API
 
 ## 不允许的拆分方式

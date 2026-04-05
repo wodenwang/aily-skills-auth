@@ -1,0 +1,106 @@
+# AuthCLI Output Contract
+
+## Commands
+
+- `auth-cli check`
+
+首版只冻结 `check` 命令的输出协议。
+
+## Input Fields
+
+固定输入字段：
+
+- `user_id`
+- `skill_id`
+- `agent_id`
+- `chat_id`
+
+输入优先级：
+
+1. 显式参数
+2. 环境变量
+3. Agent 运行时上下文
+4. 本地配置
+
+## Formats
+
+- `json`
+- `env`
+- `exit-code`
+
+未显式指定时默认输出 `json`。
+
+## JSON Success
+
+```json
+{
+  "ok": true,
+  "request_id": "req_abc123",
+  "allowed": true,
+  "token_type": "Bearer",
+  "access_token": "eyJ...",
+  "expires_in": 300,
+  "refresh_before": 240,
+  "cache_hit": false,
+  "auth_context": {
+    "user_id": "ou_abc123",
+    "skill_id": "sales-analysis",
+    "agent_id": "host-vm-a1b2c3d4",
+    "chat_id": "oc_sales_weekly"
+  }
+}
+```
+
+## JSON Denied
+
+```json
+{
+  "ok": false,
+  "request_id": "req_abc123",
+  "allowed": false,
+  "deny_code": "CHAT_SKILL_DENIED",
+  "deny_message": "该群聊未开放此 Skill"
+}
+```
+
+## ENV Success
+
+```bash
+AUTH_OK=true
+AUTH_ALLOWED=true
+AUTH_REQUEST_ID=req_abc123
+AUTH_TOKEN_TYPE=Bearer
+AUTH_ACCESS_TOKEN=eyJ...
+AUTH_EXPIRES_IN=300
+AUTH_REFRESH_BEFORE=240
+AUTH_USER_ID=ou_abc123
+AUTH_SKILL_ID=sales-analysis
+AUTH_AGENT_ID=host-vm-a1b2c3d4
+AUTH_CHAT_ID=oc_sales_weekly
+```
+
+## ENV Denied
+
+```bash
+AUTH_OK=false
+AUTH_ALLOWED=false
+AUTH_REQUEST_ID=req_abc123
+AUTH_DENY_CODE=CHAT_SKILL_DENIED
+AUTH_DENY_MESSAGE=该群聊未开放此 Skill
+```
+
+## Exit Codes
+
+- `0`: allowed
+- `10`: denied by policy
+- `20`: invalid input
+- `30`: cache read/write failure
+- `40`: upstream unavailable or timeout
+- `50`: unexpected internal error
+
+## Rules
+
+- deny 和 error 必须区分，禁止把上游异常伪装成 deny
+- 任一错误场景必须 fail-closed，不输出伪造 token
+- `env` 模式仅在 allow 场景输出 token 字段
+- `json` 和 `env` 都必须保留 `request_id` 以便审计串联

@@ -21,17 +21,25 @@
 | 仓库 | 角色 | 技术栈 | 状态 |
 |------|------|--------|------|
 | `aily-skills-auth` | 主控规划/资源仓 | Markdown/YAML | 当前仓库 |
-| `aily-skills-auth-iam-service` | 鉴权决策与签发服务 | Python + FastAPI | 规划中 |
-| `aily-skills-auth-admin-console` | 管理控制台 | React | 规划中 |
-| `aily-skills-auth-authcli` | 本地鉴权 CLI | Go | 规划中 |
-| `aily-skills-auth-verify-sdk` | 服务端验证 SDK | Python first | 规划中 |
-| `aily-skills-auth-demo-skill` | 端到端示例 Skill | Bash/Python | 规划中 |
+| `aily-skills-auth-iam-service` | 鉴权决策与签发服务 | Python + FastAPI | Phase 2 已支撑完成 |
+| `aily-skills-auth-admin-console` | 管理控制台 | React | 延后到最后 |
+| `aily-skills-auth-authcli` | 本地鉴权 CLI | Go | Phase 1 完成 |
+| `aily-skills-auth-verify-sdk` | 服务端验证 SDK | Python first | Phase 2 完成 |
+| `aily-skills-auth-demo-skill` | skill-template + skill-sample + service-demo | Bash/Python | Phase 2 完成 |
 
 ## 文档入口
 
 - 总览：[docs/README.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/README.md)
 - V3 蓝图：[docs/architecture/enterprise-agent-auth-v3.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/architecture/enterprise-agent-auth-v3.md)
 - 子项目拆分：[docs/roadmap/repo-splitting-plan.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/repo-splitting-plan.md)
+- `authcli` 启动包：[docs/roadmap/authcli-mvp-bootstrap.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/authcli-mvp-bootstrap.md)
+- Phase 3 执行分工：[docs/roadmap/phase3-pilot-execution.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/phase3-pilot-execution.md)
+- 试点 Skill 接入清单：[docs/roadmap/pilot-skill-onboarding-checklist.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/pilot-skill-onboarding-checklist.md)
+- `0.1.0-alpha` 发布与部署总览：[docs/roadmap/alpha-release-and-deployment-plan.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/alpha-release-and-deployment-plan.md)
+- `0.1.0-alpha` 发布前检查单：[docs/roadmap/alpha-release-readiness-checklist.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/alpha-release-readiness-checklist.md)
+- Admin API 冻结：[docs/contracts/admin-management-api.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/contracts/admin-management-api.md)
+- 策略模拟器契约：[docs/contracts/policy-simulator.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/contracts/policy-simulator.md)
+- 标准 Skill 模板：[docs/templates/skill-template-spec.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/skill-template-spec.md)
 - 部署蓝图：[docs/roadmap/deployment-blueprint.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/deployment-blueprint.md)
 - 注册表：[registry/subprojects.yaml](/Users/wenzhewang/workspace/codex/aily-skills-auth/registry/subprojects.yaml)
 

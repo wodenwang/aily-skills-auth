@@ -12,7 +12,7 @@ subprojects:
     depends_on: []
   - name: "aily-skills-auth-iam-service"
     type: "service"
-    status: "planned"
+    status: "phase2-supported"
     purpose: "鉴权决策、签发、撤销、审计、飞书同步"
     stack:
       - "python"
@@ -23,7 +23,7 @@ subprojects:
       - "aily-skills-auth"
   - name: "aily-skills-auth-admin-console"
     type: "frontend"
-    status: "planned"
+    status: "deferred-to-final-phase"
     purpose: "管理控制台和策略模拟器"
     stack:
       - "react"
@@ -32,7 +32,7 @@ subprojects:
       - "aily-skills-auth-iam-service"
   - name: "aily-skills-auth-authcli"
     type: "cli"
-    status: "planned"
+    status: "phase1-complete"
     purpose: "本地鉴权代理、缓存、刷新、Agent 注册"
     stack:
       - "go"
@@ -41,7 +41,7 @@ subprojects:
       - "aily-skills-auth-iam-service"
   - name: "aily-skills-auth-verify-sdk"
     type: "sdk"
-    status: "planned"
+    status: "phase2-complete"
     purpose: "服务端 token 验证和身份一致性校验"
     stack:
       - "python"
@@ -50,8 +50,8 @@ subprojects:
       - "aily-skills-auth-iam-service"
   - name: "aily-skills-auth-demo-skill"
     type: "demo"
-    status: "planned"
-    purpose: "端到端示例 Skill 与联调场景"
+    status: "phase2-complete"
+    purpose: "skill-template、skill-sample 与 service-demo 的组合样板"
     stack:
       - "bash"
       - "python"

@@ -11,9 +11,17 @@
 
 其中：
 
-- 私聊场景下 `chat_id` 可为空
+- `chat_id` 是 token verify 的必传上下文字段之一
+- 私聊场景下 `chat_id` 传 `null`
 - `user_id` 使用飞书 `open_id`
 - `agent_id` 必须稳定且唯一
+
+verify 的上下文一致性最少包含：
+
+- `user_id`
+- `skill_id`
+- `agent_id`
+- `chat_id`
 
 ## Authorization Dimensions
 
@@ -46,6 +54,11 @@
   }
 }
 ```
+
+说明：
+
+- `auth_context.chat_id` 是 token 绑定上下文的一部分，不只是审计字段
+- token verify 时必须校验请求中的 `user_id + skill_id + agent_id + chat_id` 与 `auth_context` 一致
 
 ## Audit Minimum Fields
 
