@@ -14,6 +14,7 @@
 - [deployment-blueprint.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/deployment-blueprint.md)
 - [pilot-operations-runbook.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/pilot-operations-runbook.md)
 - [pilot-skill-onboarding-checklist.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/pilot-skill-onboarding-checklist.md)
+- [first-pilot-skill-kickoff.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/first-pilot-skill-kickoff.md)
 - [alpha-release-and-deployment-plan.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/alpha-release-and-deployment-plan.md)
 - [alpha-release-readiness-checklist.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/alpha-release-readiness-checklist.md)
 - [final-skill-release-profile.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/final-skill-release-profile.md)
@@ -44,6 +45,7 @@
 - [acceptance-matrix.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/test-strategy/acceptance-matrix.md)
 - [e2e-scenarios.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/test-strategy/e2e-scenarios.md)
 - [alpha-packaging-verification-2026-04-06.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/test-strategy/alpha-packaging-verification-2026-04-06.md)
+- [alpha-cloud-rehearsal-2026-04-06.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/test-strategy/alpha-cloud-rehearsal-2026-04-06.md)
 - [phase2-real-e2e-report-2026-04-05.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/test-strategy/phase2-real-e2e-report-2026-04-05.md)
 - [security-cases.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/test-strategy/security-cases.md)
 
