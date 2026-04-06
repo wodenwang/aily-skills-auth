@@ -1,70 +1,30 @@
 # Policy Simulator Contract
 
+## Status
+
+- `0.2.0` future / deferred
+- 非当前冻结接口
+
 ## Purpose
 
-冻结 `admin-console` 策略模拟器与 `iam-service` 之间的最小输入输出模型。
+策略模拟器不纳入 `0.2.0` 的 `admin-console` MVP。
 
-## Endpoint
+实现仓在 `0.2.0` 不应把本文档视为必须实现的当前 contract。
 
-- `POST /api/v1/admin/policies/simulate`
+本文件保留为后续版本占位，用于说明未来若重新引入模拟器，必须遵守以下边界：
 
-## Request
+- 模拟器只能调用服务端能力
+- 前端不重算授权策略
+- 结果必须可映射到真实鉴权错误码和审计字段
 
-```json
-{
-  "user_id": "ou_abc123",
-  "skill_id": "sales-analysis",
-  "agent_id": "host-vm-a1b2c3d4",
-  "chat_id": "oc_sales_weekly"
-}
-```
+## Future Direction
 
-## Request Rules
+若后续恢复模拟器，输入模型应基于当时冻结的授权主模型重新定义。
 
-- `chat_id = null` 表示私聊
-- 非空 `chat_id` 表示在指定群聊中模拟
-- 模拟器只接受显式输入，不推断上下文
-- 模拟器调用服务端策略能力，不在前端重算策略
+在 `0.2.0` 之后重新设计前，不保留以下旧模型假设：
 
-## Success Response
-
-```json
-{
-  "allowed": true,
-  "decision_source": {
-    "policy_id": "pol_001",
-    "chat_mode": "allowed_list"
-  },
-  "permissions": ["sales:read"],
-  "data_scope": {
-    "data_level": "department",
-    "dept_ids": ["D001"]
-  },
-  "explanation": [
-    "user has at least one allowed role",
-    "chat is in allowlist"
-  ]
-}
-```
-
-## Denied Response
-
-```json
-{
-  "allowed": false,
-  "deny_code": "CHAT_SKILL_DENIED",
-  "decision_source": {
-    "policy_id": "pol_001",
-    "chat_mode": "allowed_list"
-  },
-  "explanation": [
-    "chat is not in allowlist"
-  ]
-}
-```
-
-## UI Boundary
-
-- `admin-console` 只展示服务端返回的判定依据
-- `admin-console` 不内嵌本地策略解释器
-- 模拟器结果应能直接映射到审计和真实鉴权错误码
+- `agent_id`
+- `chat_id`
+- `role`
+- `data_scope`
+- `permissions`

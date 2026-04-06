@@ -5,7 +5,6 @@
 为首个真实试点 skill 提供一份直接可执行的接入清单，基于：
 
 - `skill-template`
-- `skill-sample`
 - `service-demo`
 - `authcli`
 - `verify-sdk`
@@ -25,23 +24,21 @@
 - 确认 `skill_name`
 - 确认 `owner`
 - 确认 `business_purpose`
-- 确认 `required_backend_service`
+- 确认 `protected_service`
 
 输出：
 
 - 一份基于 [skill-template-spec.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/skill-template-spec.md) 的实际 skill 文档
 
-## Step 2: Runtime Context Freeze
+## Step 2: Identity Input Freeze
 
 - 明确 `user_id` 来源
-- 明确 `agent_id` 来源
-- 明确 `chat_id` 来源
 - 明确字段缺失时的 fail-closed 规则
 
 ## Step 3: AuthCLI Access
 
 - 宿主机安装 `authcli`
-- 校验 `auth-cli check --skill <skill_id>` 可执行
+- 校验 `auth-cli check --skill <skill_id> --user-id <user_id>` 可执行
 - 确认缓存路径可写
 - 确认 deny / error 能区分
 
@@ -52,8 +49,6 @@
   - `Authorization`
   - `X-Auth-User-ID`
   - `X-Auth-Skill-ID`
-  - `X-Auth-Agent-ID`
-  - `X-Aily-Chat-Id`
 - 确认服务不本地重算策略
 
 ## Step 5: Required Validation
@@ -61,7 +56,7 @@
 - allow 路径通过
 - deny 路径通过
 - refresh 路径通过
-- cross-chat 复用被拒绝
+- identity mismatch 被拒绝
 - revoke 后复用被拒绝
 - 失败时可查 `request_id`
 

@@ -3,8 +3,9 @@
 ## Commands
 
 - `auth-cli check`
+- `auth-cli check --help`
 
-首版只冻结 `check` 命令的输出协议。
+`0.2.0` 首先冻结 `check` 命令的输出协议和 `--help` 应覆盖的最小信息面。
 
 ## Input Fields
 
@@ -12,8 +13,10 @@
 
 - `user_id`
 - `skill_id`
-- `agent_id`
-- `chat_id`
+
+可选兼容字段：
+
+- `context_file`
 
 输入优先级：
 
@@ -44,9 +47,7 @@
   "cache_hit": false,
   "auth_context": {
     "user_id": "ou_abc123",
-    "skill_id": "sales-analysis",
-    "agent_id": "host-vm-a1b2c3d4",
-    "chat_id": "oc_sales_weekly"
+    "skill_id": "sales-analysis"
   }
 }
 ```
@@ -58,8 +59,8 @@
   "ok": false,
   "request_id": "req_abc123",
   "allowed": false,
-  "deny_code": "CHAT_SKILL_DENIED",
-  "deny_message": "该群聊未开放此 Skill"
+  "deny_code": "GRANT_NOT_ACTIVE",
+  "deny_message": "该用户当前未获得此 Skill 的有效授权"
 }
 ```
 
@@ -75,8 +76,6 @@ AUTH_EXPIRES_IN=300
 AUTH_REFRESH_BEFORE=240
 AUTH_USER_ID=ou_abc123
 AUTH_SKILL_ID=sales-analysis
-AUTH_AGENT_ID=host-vm-a1b2c3d4
-AUTH_CHAT_ID=oc_sales_weekly
 ```
 
 ## ENV Denied
@@ -85,8 +84,8 @@ AUTH_CHAT_ID=oc_sales_weekly
 AUTH_OK=false
 AUTH_ALLOWED=false
 AUTH_REQUEST_ID=req_abc123
-AUTH_DENY_CODE=CHAT_SKILL_DENIED
-AUTH_DENY_MESSAGE=该群聊未开放此 Skill
+AUTH_DENY_CODE=GRANT_NOT_ACTIVE
+AUTH_DENY_MESSAGE=该用户当前未获得此 Skill 的有效授权
 ```
 
 ## Exit Codes
@@ -97,6 +96,20 @@ AUTH_DENY_MESSAGE=该群聊未开放此 Skill
 - `30`: cache read/write failure
 - `40`: upstream unavailable or timeout
 - `50`: unexpected internal error
+
+## `--help` Minimum Coverage
+
+帮助文案必须至少说明：
+
+- 命令用途
+- 最小输入要求
+- 输入优先级
+- 输出格式
+- deny 与 error 的区别
+- 缓存命中、刷新、失效行为
+- 最小示例
+- 安装升级入口约定
+- 标准命令示例：`auth-cli check --skill <skill_id> --user-id <user_id> --format json`
 
 ## Rules
 

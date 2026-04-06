@@ -10,14 +10,19 @@
 {
   "user_id": "ou_abc123",
   "skill_id": "sales-analysis",
-  "agent_id": "host-vm-a1b2c3d4",
-  "chat_id": "oc_sales_weekly",
   "context": {
     "requested_action": "read",
-    "period": "2026-03"
+    "trace_id": "trace_123"
   }
 }
 ```
+
+## Request Semantics
+
+- `user_id` 与 `skill_id` 是唯一强约束字段
+- `context` 只作为审计和业务扩展透传，不参与 `0.2.0` 授权决策
+- IAM 必须先检查 `Skill.status`
+- IAM 必须基于 `UserSkillGrant` 的存在性、`status`、生效时间、失效时间做决策
 
 ## Success Response
 
@@ -29,11 +34,6 @@
   "token_type": "Bearer",
   "expires_in": 300,
   "refresh_before": 240,
-  "permissions": ["sales:read"],
-  "data_scope": {
-    "data_level": "department",
-    "dept_ids": ["D001"]
-  },
   "cache_ttl": 280
 }
 ```
@@ -44,8 +44,8 @@
 {
   "request_id": "req_abc123",
   "allowed": false,
-  "deny_code": "CHAT_SKILL_DENIED",
-  "deny_message": "该群聊未开放此 Skill"
+  "deny_code": "GRANT_NOT_ACTIVE",
+  "deny_message": "该用户当前未获得此 Skill 的有效授权"
 }
 ```
 
@@ -53,9 +53,11 @@
 
 - `PERMISSION_DENIED`
 - `USER_NOT_FOUND`
-- `AGENT_NOT_REGISTERED`
 - `SKILL_NOT_FOUND`
-- `CHAT_SKILL_DENIED`
-- `CHAT_NOT_REGISTERED`
+- `SKILL_INACTIVE`
+- `GRANT_NOT_FOUND`
+- `GRANT_NOT_ACTIVE`
+- `GRANT_NOT_YET_EFFECTIVE`
+- `GRANT_EXPIRED`
 - `RATE_LIMITED`
 - `GATEWAY_UNAVAILABLE`

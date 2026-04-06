@@ -15,28 +15,24 @@
 
 - `user_id`
 - `skill_id`
-- `agent_id`
-- `chat_id`
 
-私聊场景下 `chat_id` 固定写为 `null`。
+`0.2.0` 不再把 `agent_id`、`chat_id` 作为缓存键组成部分。
 
 ## File Format
 
 ```json
 {
-  "version": 1,
+  "version": 2,
   "entries": [
     {
-      "cache_key": "ou_abc123|sales-analysis|host-vm-a1b2c3d4|oc_sales_weekly",
+      "cache_key": "ou_abc123|sales-analysis",
       "user_id": "ou_abc123",
       "skill_id": "sales-analysis",
-      "agent_id": "host-vm-a1b2c3d4",
-      "chat_id": "oc_sales_weekly",
       "access_token": "eyJ...",
       "token_type": "Bearer",
-      "expires_at": "2026-04-05T20:00:00Z",
-      "refresh_before_at": "2026-04-05T19:59:00Z",
-      "cached_at": "2026-04-05T19:55:00Z",
+      "expires_at": "2026-04-06T20:00:00Z",
+      "refresh_before_at": "2026-04-06T19:59:00Z",
+      "cached_at": "2026-04-06T19:55:00Z",
       "source": "auth_check"
     }
   ]
@@ -49,7 +45,7 @@
 - 当前时间大于等于 `refresh_before_at` 且早于 `expires_at` 时，必须先调用 `/api/v1/token/refresh`
 - 当前时间大于等于 `expires_at` 时，禁止刷新旧 token，必须重新调用 `/api/v1/auth/check`
 - 上游返回 `TOKEN_REVOKED`、`TOKEN_INVALID`、`TOKEN_EXPIRED` 时，必须立即删除对应缓存项
-- 请求上下文四元组任一字段变化时，禁止复用旧缓存项
+- `user_id` 或 `skill_id` 任一变化时，禁止复用旧缓存项
 
 ## Write Rules
 

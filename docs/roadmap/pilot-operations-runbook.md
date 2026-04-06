@@ -12,7 +12,7 @@
 - `aily-skills-auth-authcli`
 - `aily-skills-auth-verify-sdk`
 - `aily-skills-auth-demo-skill`
-  - 其中试点前主要复用 `skill-template`、`skill-sample`、`service-demo`
+  - 其中试点前主要复用 `skill-template`、`service-demo`
 
 当前不纳入试点关键路径：
 
@@ -20,9 +20,15 @@
 
 ## Recommended Deployment Shape
 
+本手册与 [deployment-blueprint.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/deployment-blueprint.md) 的关系如下：
+
+- `0.2.0` 默认基线是 POC 级 Compose 形态
+- 试点阶段可以在不改变公共契约的前提下演进到小规模 K8s
+- 若进入 K8s，必须保留与 Compose 基线一致的服务边界、鉴权接口和分发方式
+
 ### IAM Service
 
-- 部署形态：内网单实例或小规模 K8s
+- 部署形态：默认采用 `iam-service + PostgreSQL + Redis` 同一 Compose 单元；试点规模扩大后可演进到小规模 K8s
 - 依赖：PostgreSQL、Redis
 - 启动前要求：
   - 数据库迁移已执行
@@ -36,6 +42,7 @@
   - 能访问 IAM 内网地址
   - 本地缓存路径可写
   - 超时和失败关闭保持默认开启
+  - 推荐安装入口为 `curl | sh` 或等价远程脚本拉取方式
 
 ### Verify SDK
 
@@ -44,8 +51,7 @@
   - 强制开启 Bearer token 校验
   - 强制传 `X-Auth-User-ID`
   - 强制传 `X-Auth-Skill-ID`
-  - 强制传 `X-Auth-Agent-ID`
-  - 强制传 `X-Aily-Chat-Id` 或等价 `chat_id`
+  - 通过标准包分发方式安装和升级，不作为独立 Compose 服务
 
 ### Skill Sample / Pilot Skill
 
@@ -59,7 +65,7 @@
 - allow 路径稳定
 - deny 路径稳定
 - refresh 路径稳定
-- cross-chat 复用被拒绝
+- identity mismatch 被拒绝
 - revoke 后复用被拒绝
 - 审计记录可查询
 - 失败时能定位到 `request_id`
@@ -72,7 +78,6 @@
 - `auth_latency_p99`
 - `token_verify_latency_p99`
 - `identity_mismatch_count`
-- `chat_context_mismatch_count`
 - `token_revocation_count`
 - `cache_hit_rate`
 
@@ -89,7 +94,6 @@
 ### P1 Alerts
 
 - `identity_mismatch_count > 0`
-- `chat_context_mismatch_count` 突增
 - `token_verify_latency_p99` 持续超阈值
 - `auth_success_rate` 突降
 
@@ -105,7 +109,7 @@
 
 1. 使用 allow 用户获取 token
 2. 业务请求通过一次 verify
-3. 调用 `/api/v1/token/revoke`
+3. 调用撤销接口
 4. 再次复用旧 token
 5. 确认返回 `TOKEN_REVOKED`
 6. 确认审计与告警可见
@@ -139,7 +143,7 @@
 
 - 回滚业务服务版本
 - 保持 `authcli` 和 `verify-sdk` 契约不变
-- 若本次发布涉及 header 传递变更，优先回滚该变更
+- 若本次发布涉及标准头传递变更，优先回滚该变更
 
 ## Troubleshooting
 
@@ -148,7 +152,7 @@
   - 再查 IAM access log 和 audit log
 - verify 拒绝：
   - 先确认 token 是否过期或已撤销
-  - 再确认 `user_id / skill_id / agent_id / chat_id` 是否与 token 绑定上下文一致
+  - 再确认 `user_id / skill_id` 是否与 token `sub/aud` 一致
 - 试点 Skill 无法访问后端：
   - 先查 `verify-sdk` 依赖是否正确安装
   - 再查 IAM 地址和网络策略

@@ -1,39 +1,56 @@
 # Implementation Phases
 
+## Current State
+
+- `0.1.0-alpha` 已完成 MVP 验证
+- 当前阶段进入 `0.2.0` 规格收敛
+- 本轮先更新主控仓规划、契约、模板与任务书
+
 ## Phase 0: Freeze
 
-- 完成 V3 主文档
+- 完成 V3.1 主文档
 - 冻结注册表、契约、测试矩阵
-- 建立子仓创建顺序和 owner 规则
+- 建立 `0.2.0` 子仓任务书
 
-## Phase 1: IAM Service + AuthCLI MVP
+## Phase 1: `0.1.0-alpha` MVP Closed Loop
 
-- `iam-service`: 用户/角色/部门、策略引擎、JWT、审计、飞书同步
+- `iam-service`: 最小鉴权、JWT、审计
 - `authcli`: 身份采集、缓存、鉴权调用、失败关闭
+- `verify-sdk`: token 验证与身份一致性校验
 - `demo-skill`: 最小 `skill-template + skill-sample + service-demo` 样板
 
+交付结果：
+
+- 最小闭环已验证成功
+- 可进入模型收敛与下一阶段规划
+
+## Phase 2: `0.2.0` Spec Convergence
+
+- `iam-service`: 领域模型收敛到 `User`、`Skill`、`UserSkillGrant`、`AuditLog`
+- `authcli`: 命令面、缓存键、帮助文案按最小模型重冻
+- `verify-sdk`: 对齐最小 token 契约
+- `demo-skill`: 拆分 `skill-template` 与 `service-demo` 样板职责
+- `admin-console`: 启动 MVP 规格与管理 API 冻结
+
 交付标准：
 
-- 支持私聊和群聊的最小鉴权链路
-- 支持 token 发放、过期、刷新
-- 支持审计落库
+- 所有主文档和契约移除 `chat/agent/role/group/department` 授权依赖
+- Admin API 完成 `users`、`skills`、`grants`、`audit-logs` 冻结
+- Demo Skill 模板可直接指导子仓实施
 
-## Phase 2: Verify SDK + Demo Skill
+## Phase 3: Subproject Implementation
 
-- `verify-sdk`: token 验证、身份一致性校验、标准错误映射
-- `demo-skill`: 完整 `skill-sample -> service-demo -> verify-sdk -> iam-service` E2E 样板
+- 各子仓按 `0.2.0` 任务书落地实现
+- `iam-service` 与 `admin-console` 并行推进
+- `authcli`、`verify-sdk`、`demo-skill` 同步跟进公共契约变更
 
 交付标准：
 
-- 后端 API 能强制验证 token
-- 跨 chat 复用和 revoke 后复用被稳定拒绝
+- 子仓实现与主控仓文档一致
+- 联调不再依赖旧模型字段
+- 管理台 MVP 可支撑基本运营
 
-当前状态：
-
-- `iam-service`、`authcli`、`verify-sdk`、`demo-skill` 已完成当前阶段闭环
-- `admin-console` 不进入当前关键路径，延后到最后完成
-
-## Phase 3: Pilot And Productionization
+## Phase 4: Pilot And Productionization
 
 - 试点 Skill 接入
 - 监控告警
@@ -45,11 +62,3 @@
 - 首批部门可稳定使用
 - 关键安全告警可观测
 - 生产部署与回滚可演练
-
-执行顺序：
-
-1. 主控仓与子仓状态收敛
-2. 真实 E2E 验收报告归档
-3. 首个试点 Skill 接入
-4. 监控、演练脚本和运维文档落地
-5. `admin-console` 最后启动

@@ -28,11 +28,12 @@
 ## 第一批实现范围
 
 - `check` 命令
-- 四元组身份采集
+- 最小输入模型：`user_id + skill_id`
 - 本地 token 缓存
 - 刷新窗口判断
 - `/api/v1/auth/check` 与 `/api/v1/token/refresh` 客户端
 - `json` / `env` / `exit-code` 输出
+- `--help` 帮助文案
 
 ## 明确不做
 
@@ -41,6 +42,7 @@
 - 多语言 SDK
 - 管理控制台页面
 - `verify-sdk` 的服务端校验链路
+- `agent_id` / `chat_id` 作为当前公共授权输入
 
 ## 联调顺序
 

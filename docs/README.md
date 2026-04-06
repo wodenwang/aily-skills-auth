@@ -4,6 +4,9 @@
 
 - [enterprise-agent-auth-v2-notes.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/architecture/enterprise-agent-auth-v2-notes.md)
 - [enterprise-agent-auth-v3.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/architecture/enterprise-agent-auth-v3.md)
+- [diagrams/README.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/architecture/diagrams/README.md)
+- [diagrams/repo-topology.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/architecture/diagrams/repo-topology.md)
+- [diagrams/request-sequence.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/architecture/diagrams/request-sequence.md)
 
 ## Roadmap
 
@@ -12,6 +15,8 @@
 - [authcli-mvp-bootstrap.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/authcli-mvp-bootstrap.md)
 - [phase3-pilot-execution.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/phase3-pilot-execution.md)
 - [deployment-blueprint.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/deployment-blueprint.md)
+- [agents-team-kickoff.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/agents-team-kickoff.md)
+- [reviewer-checklist.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/reviewer-checklist.md)
 - [pilot-operations-runbook.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/pilot-operations-runbook.md)
 - [pilot-skill-onboarding-checklist.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/pilot-skill-onboarding-checklist.md)
 - [first-pilot-skill-kickoff.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/roadmap/first-pilot-skill-kickoff.md)
@@ -57,9 +62,5 @@
 - [test-plan-template.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/test-plan-template.md)
 - [skill-template-spec.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/skill-template-spec.md)
 - [skill-script-reference-template.sh](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/skill-script-reference-template.sh)
-- [subproject-readme-template.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/subproject-readme-template.md)
-- [api-spec-template.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/api-spec-template.md)
 - [authcli-agents-template.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/authcli-agents-template.md)
 - [authcli-readme-template.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/authcli-readme-template.md)
-- [test-plan-template.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/test-plan-template.md)
-- [subproject-agents-template.md](/Users/wenzhewang/workspace/codex/aily-skills-auth/docs/templates/subproject-agents-template.md)

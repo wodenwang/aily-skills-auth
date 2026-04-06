@@ -1,26 +1,29 @@
 # Feishu Sync
 
-## 职责
+## 状态
 
-- 同步用户与部门
-- 对接用户状态变化
-- 为 IAM 提供身份基础数据
+- `0.2.0` future / deferred
 
-## 所属仓库
+## 说明
 
-- `aily-skills-auth-iam-service`
+飞书组织架构与通讯录同步不纳入 `0.2.0` 主路径。
 
-## 数据源
+当前 IAM 最小模型只要求：
 
-- 飞书 Open API
+- `user_id`
+- 用户资料维护
+- Skill 注册
+- UserSkillGrant 管理
 
-## 同步策略
+后续若重新引入飞书同步，应另行冻结：
 
-- POC：定时拉取
-- Pilot/Production：定时拉取 + 事件订阅
+- 同步边界
+- 用户资料覆盖规则
+- 离职与禁用语义
+- 事件与定时任务策略
 
-## 边界
+## 当前边界
 
-- 不管理业务角色定义
-- 不直接签发 token
-- 不替代审计系统
+- 不作为 `iam-service` 的当前模块职责
+- 不进入 `0.2.0` 验收矩阵
+- 不阻塞 `admin-console`、`authcli`、`verify-sdk`、`demo-skill` 实施

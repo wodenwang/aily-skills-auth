@@ -6,8 +6,8 @@ subprojects:
     local_path: "../aily-skills-auth"
     github_repo: "wodenwang/aily-skills-auth"
     type: "control-plane-docs"
-    status: "active"
-    purpose: "主控规划、模板、契约与测试策略仓"
+    status: "planning-0.2.0"
+    purpose: "主控规划、模板、契约、测试策略与子仓任务书"
     stack:
       - "markdown"
       - "yaml"
@@ -16,8 +16,8 @@ subprojects:
     local_path: "../aily-skills-auth-iam-service"
     github_repo: "wodenwang/aily-skills-auth-iam-service"
     type: "service"
-    status: "phase2-supported"
-    purpose: "鉴权决策、签发、撤销、审计、飞书同步"
+    status: "needs-0.2.0-model-refactor"
+    purpose: "鉴权决策、签发、撤销、审计与管理 API"
     stack:
       - "python"
       - "fastapi"
@@ -29,8 +29,8 @@ subprojects:
     local_path: "../aily-skills-auth-admin-console"
     github_repo: "wodenwang/aily-skills-auth-admin-console"
     type: "frontend"
-    status: "deferred-to-final-phase"
-    purpose: "管理控制台和策略模拟器"
+    status: "mvp-spec-started-in-0.2.0"
+    purpose: "用户、Skill、Grant、Audit 管理控制台"
     stack:
       - "react"
     depends_on:
@@ -40,8 +40,8 @@ subprojects:
     local_path: "../aily-skills-auth-authcli"
     github_repo: "wodenwang/aily-skills-auth-authcli"
     type: "cli"
-    status: "phase1-complete"
-    purpose: "本地鉴权代理、缓存、刷新、Agent 注册"
+    status: "needs-0.2.0-command-simplification"
+    purpose: "本地鉴权代理、缓存、刷新与安装升级入口"
     stack:
       - "go"
     depends_on:
@@ -51,7 +51,7 @@ subprojects:
     local_path: "../aily-skills-auth-verify-sdk"
     github_repo: "wodenwang/aily-skills-auth-verify-sdk"
     type: "sdk"
-    status: "phase2-complete"
+    status: "needs-0.2.0-token-contract-alignment"
     purpose: "服务端 token 验证和身份一致性校验"
     stack:
       - "python"
@@ -62,7 +62,7 @@ subprojects:
     local_path: "../aily-skills-auth-demo-skill"
     github_repo: "wodenwang/aily-skills-auth-demo-skill"
     type: "demo"
-    status: "phase2-complete"
+    status: "needs-0.2.0-template-restructure"
     purpose: "skill-template、skill-sample 与 service-demo 的组合样板"
     stack:
       - "bash"

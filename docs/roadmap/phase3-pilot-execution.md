@@ -2,7 +2,7 @@
 
 ## 目标
 
-在 `iam-service`、`authcli`、`verify-sdk`、`demo-skill` 已完成联调后，跳过 `admin-console`，直接推进试点接入、监控告警、演练脚本和运维文档。这里的 `demo-skill` 指 `skill-template + skill-sample + service-demo` 组合样板。
+在 `iam-service`、`authcli`、`verify-sdk`、`demo-skill` 已完成联调后，继续推进试点接入、监控告警、演练脚本和运维文档。这里的 `demo-skill` 指 `skill-template + skill-sample + service-demo` 组合样板。`admin-console` 已在 `0.2.0` 启动 MVP，可与试点并行推进，但不作为试点放行阻塞项。
 
 ## Agent Team
 
@@ -44,7 +44,7 @@
 
 - 一次跨四仓真实 E2E 验收报告
 - 试点 Skill 验收矩阵
-- revoke、cross-chat、expired 的回归脚本说明
+- revoke、identity mismatch、expired 的回归脚本说明
 
 ### Agent `runtime`
 
@@ -68,7 +68,7 @@
 
 ## 执行顺序
 
-1. `lead` 先更新主控仓和注册表状态，明确 `admin-console` 延后。
+1. `lead` 先更新主控仓和注册表状态，明确 `admin-console` 已启动 MVP 且不阻塞试点放行。
 2. `quality` 基于真实本地实现跑完整 E2E，归档结果。
 3. `runtime` 输出试点部署、监控和演练文档。
 4. 三者统一回到主控仓，冻结试点版交付标准。
@@ -90,7 +90,7 @@
 
 ### P2
 
-- 试点稳定后再回头启动 `admin-console`
+- 在试点推进过程中持续收敛 `admin-console` MVP 与管理 API 的一致性
 
 ## 完成标准
 
@@ -98,4 +98,4 @@
 - 真实 E2E 验收结果已归档
 - 首个试点 Skill 可稳定接入
 - 关键告警和演练步骤可执行
-- `admin-console` 不阻塞试点和生产化推进
+- `admin-console` 已进入并行推进状态，但不阻塞试点和生产化推进

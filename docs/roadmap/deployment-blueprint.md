@@ -2,14 +2,52 @@
 
 ## 目标
 
-为 `iam-service`、`verify-sdk` 集成方和 `authcli` 所在 Agent 宿主机提供一致的部署层级。
+为 `iam-service`、`verify-sdk` 集成方、`authcli` 分发和 `demo-service` 提供一致的 `0.2.0` 部署基线。
+
+## `0.2.0` 默认部署拆分
+
+### IAM Compose 单元
+
+以下组件固定在同一个 Compose 拓扑中：
+
+- `iam-service`
+- PostgreSQL
+- Redis
+
+原因：
+
+- 三者高聚合
+- 便于单机 POC、联调和首轮运维
+- 便于统一管理迁移、缓存和服务配置
+
+### Demo Compose 单元
+
+以下组件可保持独立 Compose：
+
+- `service-demo`
+
+原因：
+
+- 便于单独演示受保护业务服务接入
+- 便于与真实业务服务替换
+
+### 非 Compose 分发对象
+
+以下组件不作为 Compose 服务发布：
+
+- `authcli`
+- `verify-sdk`
+
+分发要求：
+
+- `authcli` 支持简单安装与升级入口，优先 `curl | sh` 或等价脚本拉取方式
+- `verify-sdk` 通过标准包分发方式供服务端安装和升级
 
 ## POC
 
 - 单节点部署
-- Docker Compose
-- PostgreSQL 单实例
-- Redis 单实例
+- `iam-service + PostgreSQL + Redis` 同一 Compose
+- `service-demo` 独立 Compose
 - 手动密钥管理
 
 适用：
